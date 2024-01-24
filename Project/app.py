@@ -12,7 +12,6 @@ print("CSRF Key:", app.config['SECRET_KEY'])
 
 init_db(app)
 
-
 app.add_url_rule('/', 'index', index)
 app.add_url_rule('/add_movie', 'add_movie', add_movie, methods=['GET', 'POST'])
 app.add_url_rule('/summary', 'summary', summary)
