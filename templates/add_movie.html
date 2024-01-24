@@ -1,10 +1,19 @@
+<!-- templates/add_movie.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Film</title>
 </head>
 <body>
-$END$
+    <h1>Add Film</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.title.label }} {{ form.title }}<br>
+        {{ form.opinion.label }} {{ form.opinion }}<br>
+        {{ form.add }}
+    </form>
 </body>
 </html>

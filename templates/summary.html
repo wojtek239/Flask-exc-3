@@ -1,10 +1,26 @@
+<!-- templates/summary.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary</title>
 </head>
 <body>
-
+    <h1>Summary</h1>
+    <ul>
+        {% for film in filmy %}
+            <li>
+                <strong>{{ film.title }}</strong><br>
+                Opinions:
+                <ul>
+                    {% for opinion in film.opinions %}
+                        <li>{{ opinion.content }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
