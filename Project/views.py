@@ -1,7 +1,6 @@
-# app/views.py
-from flask import Flask, render_template, redirect, url_for
-from .forms import AddMovieForm, AddOpinionForm
-from .models import db, Movie, Opinion
+from flask import render_template, redirect, url_for
+from Project.models import db, Movie, Opinion
+from Project.forms import AddOpinionForm, AddMovieForm
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///base.db'
@@ -42,3 +41,7 @@ def add_movie():
 def summary():
     filmy = Movie.query.all()
     return render_template('summary.html', movies=Movie)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
