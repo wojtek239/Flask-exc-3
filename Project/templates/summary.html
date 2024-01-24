@@ -10,13 +10,13 @@
 <body>
     <h1>Summary</h1>
     <ul>
-        {% for film in filmy %}
+        {% for movie in movies %}
             <li>
-                <strong>{{ film.title }}</strong><br>
-                Opinions:
+                <strong>{{ movie.title }}</strong><br>
+                Reviews:
                 <ul>
-                    {% for opinion in film.opinions %}
-                        <li>{{ opinion.content }}</li>
+                    {% for review in movie.reviews %}
+                        <li>{{ review.content }}</li>
                     {% endfor %}
                 </ul>
             </li>

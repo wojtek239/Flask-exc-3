@@ -1,19 +1,26 @@
 from flask import render_template, redirect, url_for
-from Project.models import db, Movie, Opinion
-from Project.forms import AddOpinionForm, AddMovieForm
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextAreaField, SubmitField
+from wtforms.validators import DataRequired
+from models import db, Movie, Review
+from app import app
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///base.db'
-db.init_app(app)
 
-with app.app_context():
-    db.create_all()
+class AddMovieForm(FlaskForm):
+    title = StringField('Movie Title', validators=[DataRequired()])
+    review = TextAreaField('Review', validators=[DataRequired()])
+    add = SubmitField('Add Movie')
+
+
+class AddReviewForm(FlaskForm):
+    review = TextAreaField('Review', validators=[DataRequired()])
+    add = SubmitField('Add Review')
 
 
 @app.route('/')
 def index():
     movies = Movie.query.all()
-    return render_template('index.html', movies=Movie)
+    return render_template('index.html', movies=movies)
 
 
 @app.route('/add_movie', methods=['GET', 'POST'])
@@ -22,14 +29,14 @@ def add_movie():
 
     if form.validate_on_submit():
         title = form.title.data
-        opinion = form.opinion.data
+        review = form.review.data
 
         new_movie = Movie(title=title)
         db.session.add(new_movie)
         db.session.commit()
 
-        new_opinion = Opinion(content=opinion, movie_id=new_movie.id)
-        db.session.add(new_opinion)
+        new_review = Review(content=review, movie_id=new_movie.id)
+        db.session.add(new_review)
         db.session.commit()
 
         return redirect(url_for('index'))
@@ -39,9 +46,5 @@ def add_movie():
 
 @app.route('/summary')
 def summary():
-    filmy = Movie.query.all()
-    return render_template('summary.html', movies=Movie)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+    movies = Movie.query.all()
+    return render_template('summary.html', movies=movies)

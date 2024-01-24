@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Film</title>
+    <title>Add Movie</title>
 </head>
 <body>
-    <h1>Add Film</h1>
+    <h1>Add Movie</h1>
     <form method="POST">
         {{ form.hidden_tag() }}
         {{ form.title.label }} {{ form.title }}<br>
-        {{ form.opinion.label }} {{ form.opinion }}<br>
+        {{ form.review.label }} {{ form.review }}<br>
         {{ form.add }}
     </form>
 </body>
 </html>
+
