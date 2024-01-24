@@ -3,7 +3,6 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired
 from models import db, Movie, Review
-from app import app
 
 
 class AddMovieForm(FlaskForm):
@@ -17,13 +16,11 @@ class AddReviewForm(FlaskForm):
     add = SubmitField('Add Review')
 
 
-@app.route('/')
 def index():
     movies = Movie.query.all()
     return render_template('index.html', movies=movies)
 
 
-@app.route('/add_movie', methods=['GET', 'POST'])
 def add_movie():
     form = AddMovieForm()
 
@@ -44,7 +41,6 @@ def add_movie():
     return render_template('add_movie.html', form=form)
 
 
-@app.route('/summary')
 def summary():
     movies = Movie.query.all()
     return render_template('summary.html', movies=movies)
