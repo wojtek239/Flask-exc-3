@@ -12,5 +12,6 @@ app.add_url_rule('/add_movie', 'add_movie', add_movie, methods=['GET', 'POST'])
 app.add_url_rule('/summary', 'summary', summary)
 
 if __name__ == "__main__":
-    db.create_all()
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
